@@ -1,0 +1,407 @@
+{
+  "步兵":{
+    "type":"步兵",
+    "img": "asset/image/role/soldier/common/mgif72.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif72.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":20,
+    "def":14,
+    "mov":6,
+    "mr":50,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "狂战士":{
+    "type":"步兵",
+    "img": "asset/image/role/soldier/common/mgif74.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif74.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":24,
+    "def":15,
+    "mov":6,
+    "mr":45,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "重装步兵":{
+    "type":"步兵",
+    "img": "asset/image/role/soldier/common/mgif73.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif73.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":25,
+    "def":22,
+    "mov":5,
+    "mr":70,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "暗黑卫队":{
+    "type":"步兵",
+    "img": "asset/image/role/soldier/common/mgif7c.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif7c.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":30,
+    "def":25,
+    "mov":6,
+    "mr":95,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "枪兵":{
+    "type":"枪兵",
+    "img": "asset/image/role/soldier/common/mgif7e.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif7e.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":18,
+    "def":17,
+    "mov":5,
+    "mr":50,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "重装枪兵":{
+    "type":"枪兵",
+    "img": "asset/image/role/soldier/common/mgif7f.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif7f.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":20,
+    "def":23,
+    "mov":5,
+    "mr":70,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "骑兵":{
+    "type":"骑兵",
+    "img": "asset/image/role/soldier/common/mgif79.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif79.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":22,
+    "def":14,
+    "mov":10,
+    "mr":50,
+    "range":1,
+    "move":"ride",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "重装骑兵":{
+    "type":"骑兵",
+    "img": "asset/image/role/soldier/common/mgif7a.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif7a.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":27,
+    "def":19,
+    "mov":9,
+    "mr":70,
+    "range":1,
+    "move":"ride",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "皇家骑兵":{
+    "type":"骑兵",
+    "img": "asset/image/role/soldier/common/mgif7b.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif7b.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":34,
+    "def":23,
+    "mov":13,
+    "mr":90,
+    "range":1,
+    "move":"ride",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "暗黑精灵":{
+    "type":"弓兵",
+    "img": "asset/image/role/soldier/common/mgif76.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif76.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":20,
+    "def":8,
+    "mov":7,
+    "mr":85,
+    "range":3,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "投石器":{
+    "type":"弓兵",
+    "img": "asset/image/role/soldier/common/mgif77.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif77.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":22,
+    "def":10,
+    "mov":2,
+    "mr":30,
+    "range":6,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "狮鹫":{
+    "type":"飞兵",
+    "img": "asset/image/role/soldier/common/mgif7d.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif7d.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":27,
+    "def":14,
+    "mov":10,
+    "mr":70,
+    "range":1,
+    "move":"fly",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "蜥蜴人":{
+    "type":"水兵",
+    "img": "asset/image/role/soldier/common/mgif78.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif78.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":24,
+    "def":6,
+    "mov":7,
+    "mr":50,
+    "range":1,
+    "move":"swim",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "蛮族":{
+    "type":"步兵",
+    "img": "asset/image/role/soldier/common/mgif75.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif75.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":19,
+    "def":12,
+    "mov":6,
+    "mr":40,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "石巨人":{
+    "type":"枪兵",
+    "img": "asset/image/role/soldier/common/mgif86.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif86.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":23,
+    "def":28,
+    "mov":4,
+    "mr":90,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "地狱猎犬":{
+    "type":"骑兵",
+    "img": "asset/image/role/soldier/common/mgif8b.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif8b.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":24,
+    "def":22,
+    "mov":9,
+    "mr":60,
+    "range":1,
+    "move":"ride",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "骨龙":{
+    "type":"骑兵",
+    "img": "asset/image/role/soldier/common/mgif84.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif84.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":26,
+    "def":24,
+    "mov":8,
+    "mr":70,
+    "range":1,
+    "move":"ride",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "鬼魂":{
+    "type":"灵体",
+    "img": "asset/image/role/soldier/common/mgif8a.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif8a.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":25,
+    "def":21,
+    "mov":6,
+    "mr":75,
+    "range":1,
+    "move":"fly",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "火元素":{
+    "type":"灵体",
+    "img": "asset/image/role/soldier/common/mgif88.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif88.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":28,
+    "def":22,
+    "mov":6,
+    "mr":100,
+    "range":1,
+    "move":"fly",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "石像鬼":{
+    "type":"飞兵",
+    "img": "asset/image/role/soldier/common/mgif82.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif82.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":25,
+    "def":13,
+    "mov":10,
+    "mr":50,
+    "range":1,
+    "move":"fly",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "吸血蝙蝠":{
+    "type":"飞兵",
+    "img": "asset/image/role/soldier/common/mgif87.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif87.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":31,
+    "def":18,
+    "mov":6,
+    "mr":80,
+    "range":1,
+    "move":"fly",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "巨海兽":{
+    "type":"水兵",
+    "img": "asset/image/role/soldier/common/mgif85.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif85.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":26,
+    "def":15,
+    "mov":6,
+    "mr":45,
+    "range":1,
+    "move":"swim",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "狼人":{
+    "type":"无",
+    "img": "asset/image/role/soldier/common/mgif83.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif83.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":19,
+    "def":14,
+    "mov":7,
+    "mr":60,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "史莱姆":{
+    "type":"无",
+    "img": "asset/image/role/soldier/common/mgif8c.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif8c.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":20,
+    "def":20,
+    "mov":6,
+    "mr":30,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "骷髅兵":{
+    "type":"不死",
+    "img": "asset/image/role/soldier/common/mgif80.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif80.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":20,
+    "def":12,
+    "mov":4,
+    "mr":35,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "僵尸":{
+    "type":"不死",
+    "img": "asset/image/role/soldier/common/mgif81.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif81.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":22,
+    "def":14,
+    "mov":4,
+    "mr":35,
+    "range":1,
+    "move":"run",
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "大恶魔":{
+    "type":"魔族",
+    "img": "asset/image/role/soldier/common/mgif89.png",
+    "imgs": {
+      "active":"asset/image/role/soldier/active/mgif89.gif",
+      "battle":"asset/image/role/soldier/battle/.gif"
+    },
+    "atk":33,
+    "def":24,
+    "mov":7,
+    "mr":85,
+    "range":1,
+    "move":"fly",
+    "inj":"asset/effect/injured-man.mp3"
+  }
+}

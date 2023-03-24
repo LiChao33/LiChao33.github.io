@@ -1,0 +1,841 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+  <script type="text/javascript" src="asset/js/lh.js"></script>
+  <script>lh.load()</script>
+
+  <style type="text/css">
+    html, body, #app{
+      height: 100%;
+      margin:0;
+    }
+    #app{
+      background-image: url(asset/image/shop.jpg);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      user-select: none;
+    }
+    p{
+      margin:0;
+    }
+
+    /*标签*/
+      .tab{
+        padding:0 20px 0 0;
+      }
+      .tab p{
+        margin-bottom: 10px;
+      }
+      .tab button{
+        width: 100px;
+        font-size: 20px;
+      }
+
+    /*角色*/
+      .hero{
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow-y: auto;
+      }
+      .hero .head{
+        padding: 10px 15px 0 15px;
+        font-size: 20px;
+      }
+      .hero .content{
+        padding-top: 10px;
+      }
+      .hero .item{
+        display: inline-block;
+        width: 400px;
+        height: 200px;
+        margin: 0 0 15px 15px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #000;
+      }
+      .hero .item .title{
+        display: flex;
+        align-items: center;
+      }
+      .hero .item .attr span{
+        margin-right: 15px;
+      }
+
+      /*转职*/
+      .hero-trans{
+        width: 1302px;
+        height: 842px;
+        background-color: #fff;
+        border-radius: 10px;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .hero-trans .item{
+        width: 260px;
+        height: 120px;
+        padding: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 0 1px #000;
+      }
+      .hero-trans .item:hover{
+        cursor: pointer;
+        background-color: #D2E9FF;
+      }
+      .hero-trans .item span{
+        margin-right: 10px;
+      }
+
+    /*商店*/
+      .shop{
+        width: 100%;
+      }
+      .shop .contain{
+        width: 100%;
+        height: 400px;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow-y: auto;
+      }
+      .shop .contain .title{
+        padding: 10px 15px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .shop .contain2 .item,.sel-equip .item{
+        display: inline-block;
+        height: 120px;
+        width: 230px;
+        margin:0 0 15px 15px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #000;
+      }
+      .shop .contain2 .title2,.shop .contain2 .item .act{
+        display: flex;
+        justify-content: space-between;
+      }
+      .shop .contain2 .item .content,.sel-equip .item .content{
+        margin-top: 5px;
+        display: flex;
+        height: 65px;
+      }
+      .shop .contain2 .item .content img,.sel-equip img{
+        width: 60px;
+        height: 60px;
+      }
+      .shop .contain2 .item .content .info,.sel-equip .info{
+        width: 170px;
+        margin-left: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+      }
+      .shop .contain2 .item .content .info span,.sel-equip .info span{
+        margin-right: 10px;
+        word-break:break-all;
+      }
+      .shop .myitem{
+        display: inline-block;
+        margin:0 0 10px 10px;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #000;
+      }
+      .shop .myitem img{
+        width: 30px;
+        height:30px;
+      }
+
+    /*装备*/
+      .equip{
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding-top: 15px;
+        overflow-y: auto;
+      }
+      .equip-hero{
+        display: inline-block;
+        height: 130px;
+        padding:10px;
+        margin:0 0 15px 15px; 
+        border-radius: 5px;
+        box-shadow: 0 0 3px #000;
+      }
+      .equip-hero .head{
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+      }
+      .equip-hero .head img{
+        margin-right: 5px;
+      }
+
+      .sel-equip{
+        width: 70%;
+        height: 60%;
+        background-color: #fff;
+        padding-top: 20px;
+        border-radius: 10px;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        overflow-y: auto;
+      }
+
+    /*部队*/
+      .troops{
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow-y: auto;
+      }
+      .troops .head{
+        padding: 10px 15px;
+        font-size: 20px;
+      }
+      .troops .item{
+        display: inline-block;
+        width: 300px;
+        height: 100px;
+        margin: 0 0 15px 15px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #000;
+      }
+      .troops .item .recruit-hover:hover{
+        cursor: pointer;
+      }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="animate__animated animate__fadeIn">
+    <div style="height:80%;padding:30px;display: flex;">
+      <!-- 左侧按钮 -->
+      <div class="tab">
+        <p><el-button plain @click="tab='hero'">角色</el-button></p>
+        <p><el-button plain @click="tab='shop'">商店</el-button></p>
+        <p><el-button plain @click="tab='equip'">装备</el-button></p>
+        <p><el-button plain @click="tab='troops'">部队</el-button></p>
+      </div>
+
+      <!-- 角色 -->
+        <div v-if="tab=='hero'" class="hero">
+          <p class="head">全局经验：{{data.save.exp}}</p>
+          <div class="content">
+            <div v-for="(v,k) in data.save.hero" class="item">
+              <p class="title">
+                <img :src="v.imgs.active">
+                <span style="margin-left: 5px;">{{k}}</span>
+                <span style="margin-left: 10px;">{{v.pro}}</span>
+                <span v-if="v.exp" style="margin:0 10px;">Lv10</span>
+                <span v-else style="margin:0 10px;">Lv1</span>
+                <el-button size="mini" :disabled="v.exp" @click="practice(k)">修行</el-button>
+                <el-button size="mini" @click="showTrans(k)">转职</el-button>
+                <el-button size="mini" @click="$message('开发中')">重置</el-button>
+              </p>
+              <hr />
+              <div class="attr">
+                <div>
+                  <span>攻击{{v.atk}}</span>
+                  <span>防御{{v.def}}</span>
+                  <span>移动力{{v.mov}}</span>
+                  <span>魔防{{v.mr}}</span>
+                  <span>魔力{{v.mp}}</span>
+                </div>
+                <div>
+                  <span>指挥:范围{{v.command.range}}</span>
+                  <span>攻+{{v.command.atk}}</span>
+                  <span>防+{{v.command.def}}</span>
+                </div>
+              </div>
+              <hr />
+              <div>
+                佣兵:<span v-for="v2 in v.recruit" style="margin: 0 5px;"><img :src="data.wo[v2].imgs.active">{{v2}}</span>
+              </div>
+              <hr />
+              <div>
+                魔法:<span v-for="v2 in v.magic" style="margin: 0 5px;">{{v2}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 转职选择 -->
+        <div v-if="show.selPro" class="loaf-popup" style="flex-direction: column;">
+          <div class="hero-trans">
+            <el-button style="position: absolute;top: 0;right: 0" type="primary" @click="show.selPro=false">关闭</el-button>
+            <div v-for="c in canTrans">
+              <div v-for="v in c">
+                <div v-if="v" :style="heroTransStyle(v)" class="item" @click="trans(v)">
+                  <div>
+                    <img :src="v.info.imgs.active">
+                    <span>{{v.name}}</span>
+                    <span>魔防{{v.content.mr}}</span>
+                    <span>魔力+{{v.content.mp}}</span>
+                  </div>
+                  <div>
+                    <span>攻击+{{v.content.atk}}</span>
+                    <span>防御+{{v.content.def}}</span>
+                    <span>移动力{{v.content.mov}}</span>
+                  </div>
+                  <div>
+                    <span>指挥:范围{{v.content.command.range}}</span>
+                    <span>攻+{{v.content.command.atk}}</span><span>防+{{v.content.command.def}}</span>
+                  </div>
+                  <div>
+                    佣兵:<span v-for="v2 in v.content.recruit" style="margin: 0 5px;"><img :src="data.wo[v2].imgs.active">{{v2}}</span>
+                  </div>
+                  <div>
+                    魔法:<span v-for="v2 in v.content.magic" style="margin: 0 5px;">{{v2}}</span>
+                  </div>
+                </div>
+                <div v-else style="height: 120px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- 商店 -->
+      <div v-if="tab=='shop'" class="shop">
+        <div class="contain">
+          <p class="title">
+            <span>
+              商店物品
+              <el-button type="primary" size="mini" @click="type='weapon'">武器</el-button>
+              <el-button type="primary" size="mini" @click="type='armor'">防具</el-button>
+              <el-button type="primary" size="mini" @click="type='jew'">饰品</el-button>
+            </span>
+            <span>你的资金：<span style="color:blue;margin-right:5px;">{{data.save.money}}</span>P</span>
+          </p>
+          <div class="contain2">
+            <div v-for="(v,k) in data.equip" v-show="canBuy(v)" class="item">
+              <p class="title2">{{k}}<span><span style="color:red;margin-right:5px;">{{v.cost}}</span>P</span></p>
+              <div class="content">
+                <img :src="v.img">
+                <div class="info">
+                  <span v-if="v.atk">攻击{{addSign(v.atk)}}</span>
+                  <span v-if="v.def">防御{{addSign(v.def)}}</span>
+                  <span v-if="v.mp">魔力{{addSign(v.mp)}}</span>
+                  <span v-if="v.magic_atk">魔攻{{addSign(v.magic_atk)}}</span>
+                  <span v-if="v.mr">魔防{{addSign(v.mr)}}</span>
+                  <span v-if="v.magic_range">魔法范围{{addSign(v.magic_range)}}</span>
+                  <span v-if="v.command">指挥加成:{{v.command.range&&('范围'+addSign(v.command.range)+' ')}}{{v.command.atk&&('攻'+addSign(v.command.atk)+' ')}}{{v.command.def&&('防'+addSign(v.command.def))}}</span>
+                  <span v-if="v.summon">召唤:{{v.summon}}</span>
+                  <span v-if="v.soldier">士兵加成:{{v.soldier.mr&&('魔防'+addSign(v.soldier.mr))}}</span>
+                  <span v-if="v.mov">移动速度{{addSign(v.mov)}}</span>
+                  <span v-if="v.range">攻击范围{{addSign(v.range)}}</span>
+                </div>
+              </div>
+              <div class="act">
+                <el-popover
+                  placement="top"
+                  trigger="click"
+                >
+                  <template #reference>
+                    <el-button plain size="mini" style="width: 60px;padding:7px 6px;" @click="showCanEquip(v)">可装备者</el-button>
+                  </template>
+                  <div>
+                    <img v-for="v2 in can" :src="v2.img">
+                  </div>
+                </el-popover>
+                <el-button type="primary" size="mini" @click="buy(k)">购买</el-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contain" style="margin-top: 20px;height: 300px;">
+          <p class="title">库存物品</p>
+          <div class="contain2" style="padding-left: 10px;">
+            <div v-for="v in data.save.item" class="myitem">
+              <p class="title2">{{v}}</p>
+              <div style="display: flex;">
+                <img :src="data.equip[v].img">
+                <el-button type="primary" size="mini" @click="sell(v)">出售<span style="color:blue;margin:0 5px;">{{data.equip[v].cost*0.8}}</span>P</el-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 装备 -->
+        <div v-if="tab=='equip'" class="equip">
+          <div v-for="(v,k) in data.save.hero" class="equip-hero">
+            <p class="head"><img :src="v.img">{{k}}</p>
+            <div>
+              <div>
+                <div>
+                  武器:{{data.save.hero[k].equip.weapon||'无'}}
+                  <el-button type="primary" size="mini" @click="showEquip(k,'weapon')">选择</el-button>
+                  <el-button size="mini" @click="removeEquip(k,'weapon')">移除</el-button>
+                </div>
+                <div style="margin-top: 10px;">
+                  防具:{{data.save.hero[k].equip.armor||'无'}}
+                  <el-button type="primary" size="mini" @click="showEquip(k,'armor')">选择</el-button>
+                  <el-button size="mini" @click="removeEquip(k,'armor')">移除</el-button>
+                </div>
+                <div style="margin-top: 10px;">
+                  饰品:{{data.save.hero[k].equip.jew||'无'}}
+                  <el-button type="primary" size="mini" @click="showEquip(k,'jew')">选择</el-button>
+                  <el-button size="mini" @click="removeEquip(k,'jew')">移除</el-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 装备选择 -->
+        <div v-if="show.selEquip" class="loaf-popup" style="flex-direction: column;">
+          <div style="width: 70%;text-align: right;">
+            <el-button type="primary" @click="show.selEquip=false">关闭</el-button>
+          </div>
+          <div class="sel-equip">
+            <div v-for="(v,k) in canEquip" class="item">
+              <p class="title2">{{k}}</p>
+              <div class="content">
+                <img :src="v.img">
+                <div class="info">
+                  <span v-if="v.atk">攻击{{addSign(v.atk)}}</span>
+                  <span v-if="v.def">防御{{addSign(v.def)}}</span>
+                  <span v-if="v.mp">魔力{{addSign(v.mp)}}</span>
+                  <span v-if="v.magic_atk">魔攻{{addSign(v.magic_atk)}}</span>
+                  <span v-if="v.mr">魔防{{addSign(v.mr)}}</span>
+                  <span v-if="v.magic_range">魔法范围{{addSign(v.magic_range)}}</span>
+                  <span v-if="v.command">指挥加成:{{v.command.range&&('范围'+addSign(v.command.range)+' ')}}{{v.command.atk&&('攻'+addSign(v.command.atk)+' ')}}{{v.command.def&&('防'+addSign(v.command.def))}}</span>
+                  <span v-if="v.summon">召唤:{{v.summon}}</span>
+                  <span v-if="v.soldier">士兵加成:{{v.soldier.mr&&('魔防'+addSign(v.soldier.mr))}}</span>
+                  <span v-if="v.mov">移动速度{{addSign(v.mov)}}</span>
+                  <span v-if="v.range">攻击范围{{addSign(v.range)}}</span>
+                </div>
+              </div>
+              <div style="display: flex;justify-content: flex-end;">
+                <el-button type="primary" size="mini" @click="wear(k)">装备</el-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- 部队 -->
+      <div v-if="tab=='troops'" class="troops">
+        <p class="head">资金：<span style="color:blue;margin-right:5px;">{{data.save.money}}</span>P</p>
+        <div v-for="(v,k) in data.save.hero" class="item">
+          <p class="title">
+            <img :src="v.imgs.active">
+            <span style="margin-left: 5px;">{{k}}</span>
+          </p>
+          <div>
+            可雇佣:<span v-for="v2 in v.recruit" class="recruit-hover" style="margin: 0 5px;" @click="recruit(k,v2)"><img :src="data.wo[v2].imgs.active">{{v2}} {{data.wo[v2].cost}}P</span>
+          </div>
+          <div style="display: flex;align-items: center;">
+            当前佣兵:<img v-for="v2 in troops[k]" style="margin: 0 2px;" class="recruit-hover" :src="data.wo[v2].imgs.active" @click="unRecruit(k,v2)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下一步 -->
+    <div style="text-align: center;"><el-button type="primary" @click="next">下一步</el-button></div>
+
+    <!-- 背景音乐 -->
+    <loaf-music ref="music"></loaf-music>
+  </div>
+
+  <script>
+    lh.vue({
+      data(){
+        return{
+          type:'weapon',
+          can:[],
+          canEquip:{},
+          canTrans:{},
+          troops:{},
+          tab:'hero',
+          sel:{
+            hero:null,
+            equipType:null,
+          },
+          show:{
+            selEquip:false,
+            selPro:false,
+          },
+          data:{
+            save:null,
+            equip:null,
+            pro:null,
+            trans:null,
+            wo:null,
+          }
+        }
+      },
+      computed:{
+        addSign(){
+          return function(v){if(v>0){return '+'+v}else{return v}}
+        },
+        //可购买
+        canBuy(){
+          return function(v){
+            if(v.type!=this.type)return false
+            if(!v.unlock)return false
+            //task
+            if(v.unlock<0)return false
+            //未通关解锁关卡
+            if(this.data.save.level<v.unlock)return false
+            return true
+          }
+        },
+        //转职style
+        heroTransStyle(){
+          return function(v){
+            let hero=this.data.save.hero[this.sel.hero]
+            let trans=this.data.trans[this.sel.hero][hero.pro]
+            if(v.name==hero.pro)return 'border:solid 1px blue;'
+            if(trans.next.indexOf(v.name)!=-1)return 'border:solid 1px green;'
+          }
+        }
+      },
+      created(){
+        this.data.save=lh.get('save.json').save1
+        //获取装备
+        this.data.equip = lh.get("asset/data/equip.json")
+        //获取职业和转职
+        this.data.pro = lh.get("asset/data/role/hero/pro.json")
+        this.data.trans = lh.get("asset/data/role/hero/trans.json")
+        //获取兵种
+        this.data.wo = lh.get("asset/data/role/wo.json")
+
+        //征募处理
+        for(let k in this.data.save.hero){this.troops[k]=[]}
+      },
+      mounted(){
+        this.$refs.music.set('asset/music/商店.mp3')
+      },
+      methods:{
+        buy(name){
+          let v=this.data.equip[name]
+          //判断金钱
+          if(this.data.save.money<v.cost){
+            this.$message.error('资金不足')
+            return
+          }
+
+          //购买
+          this.data.save.money-=v.cost
+          this.data.save.item.push(name)
+        },
+        sell(name){
+          let v=this.data.equip[name]
+          this.data.save.money+=v.cost*0.8
+          let idx=this.data.save.item.indexOf(name)
+          this.data.save.item.splice(idx,1)
+        },
+        //修行
+        practice(name){
+          let hero=this.data.save.hero[name]
+
+          //获取职业所需修炼经验
+          let need=this.data.trans[name][hero.pro].exp
+          if(this.data.save.exp>=need){
+            this.$confirm('消耗'+need+'全局经验，是否继续？', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+            }).then(() => {
+              this.data.save.exp-=need
+              this.data.save.hero[name].exp+=need
+              //属性变化
+              let pro=this.data.pro[hero.pro]
+              hero.atk+=pro.atk
+              hero.def+=pro.def
+              hero.mp+=pro.mp
+              this.$message.success('攻击+'+pro.atk+',防御+'+pro.def+',MP+'+pro.mp)
+            }).catch(() => {
+
+            })
+          }else{
+            this.$message.error('全局经验不足，需要'+need+'经验')
+          }
+        },
+        //转职
+        trans(v){
+          //判断是否能转职
+          let hero=this.data.save.hero[this.sel.hero]
+          if(!hero.exp){
+            this.$message.error('需要先修行到Lv10')
+            return
+          }
+          let trans=this.data.trans[this.sel.hero][hero.pro]
+          if(trans.next.indexOf(v.name)==-1){
+            this.$message.error('无法转职为该职业')
+            return
+          }
+
+          this.$confirm('转职为'+v.name+'?(转职会卸下穿戴的装备)', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+          }).then(() => {
+            //移除装备
+            this.removeEquip(this.sel.hero,'weapon')
+            this.removeEquip(this.sel.hero,'armor')
+            this.removeEquip(this.sel.hero,'jew')
+            //转职
+            hero.exp=0
+            //pro img imgs
+            hero.pro=v.name
+            hero.img=v.info.img
+            hero.imgs=v.info.imgs
+            //type mr mov move
+            hero.type=v.content.type
+            hero.mr=v.content.mr
+            hero.mov=v.content.mov
+            hero.move=v.content.move
+            //command
+            hero.command.range=v.content.command.range
+            hero.command.atk+=v.content.command.atk
+            hero.command.def+=v.content.command.def
+            //magic recruit
+            for(let i=0;i<v.content.magic.length;i++){
+              if(hero.magic.indexOf(v.content.magic[i])==-1)hero.magic.push(v.content.magic[i])
+            }
+            for(let i=0;i<v.content.recruit.length;i++){
+              if(hero.recruit.indexOf(v.content.recruit[i])==-1)hero.recruit.push(v.content.recruit[i])
+            }
+            this.$message({
+              type: 'success',
+              message: '转职成功'
+            })
+          }).catch(() => {
+
+          })
+        },
+        //显示可转职职业
+        showTrans(name){
+          this.canTrans=[]
+          let res=[[],[],[],[],[]]
+          let rank5={}
+          let trans=this.data.trans[name]
+          //添加1到4级职业
+          for(let k in trans){
+            let v=trans[k]
+            let temp={
+              name:k,
+              info:v,
+              content:this.data.pro[k]
+            }
+            if(v.rank>4){
+              rank5[k]=temp
+            }else{
+              res[v.rank-1].push(temp)
+            }
+          }
+          //5级填充
+          for(let i=0;i<res[3].length;i++){
+            let v=res[3][i]
+            if(v.info.next.length){
+              res[4].push(rank5[v.info.next[0]])
+            }else{
+              res[4].push(null)
+            }
+          }
+
+          this.canTrans=res
+          this.sel.hero=name
+          this.show.selPro=true
+        },
+        //显示可更换装备
+        showEquip(name,type){
+          this.canEquip={}
+          let hero=this.data.save.hero[name]
+
+          for(let i=0;i<this.data.save.item.length;i++){
+            let k=this.data.save.item[i]
+            let v=this.data.equip[k]
+
+            //判断类型
+            if(type!=v.type)continue
+
+            //判断可以否装备
+            if(!v.can&&!v.cant)this.canEquip[k]=v
+            //有can
+            if(v.can){
+              //指定英雄
+              if(v.can.hero&&v.can.hero.indexOf(name)!=-1){
+                this.canEquip[k]=v
+              }else if(v.can.indexOf(hero.type)!=-1||v.can.indexOf(hero.pro)!=-1){
+                this.canEquip[k]=v
+              }
+            }
+            //有cant
+            if(v.cant){
+              if(v.cant=='all')continue
+              if(v.cant.indexOf(hero.type)==-1&&v.cant.indexOf(hero.pro)==-1)this.canEquip[k]=v
+            }
+          }
+
+          this.show.selEquip=true
+          this.sel.hero=name
+          this.sel.equipType=type
+        },
+        //穿戴装备
+        wear(equip){
+          let name=this.sel.hero
+          let type=this.sel.equipType
+
+          //判断原本是否有装备
+          let item=this.data.save.hero[name].equip[type]
+          if(item){
+            //放入库存
+            this.data.save.item.push(item)
+            //移除属性
+            this.equipAttr('remove',name,item)
+          }
+          this.data.save.hero[name].equip[type]=equip
+
+          //增加属性
+          this.equipAttr('wear',name,equip)
+
+          //库存移除
+          let idx=this.data.save.item.indexOf(equip)
+          this.data.save.item.splice(idx,1)
+
+          //隐藏div
+          this.show.selEquip=false
+        },
+        //移除装备
+        removeEquip(name,type){
+          let item=this.data.save.hero[name].equip[type]
+          
+          //如果没穿戴装备
+          if(!item)return
+
+          //移除属性
+          this.equipAttr('remove',name,item)
+
+          //将装备放入库存
+          this.data.save.item.push(item)
+          this.data.save.hero[name].equip[type]=null
+        },
+        //可装备人员
+        showCanEquip(v){
+          this.can=[]
+          //没有can没有cant，都可以
+          if(!v.can&&!v.cant)this.can=this.data.save.hero
+          //有can
+          if(v.can){
+            //是否是can.hero，指定英雄
+            if(v.can.hero){
+              for(let k in this.data.save.hero){
+                if(v.can.hero.indexOf(k)!=-1)this.can.push(this.data.save.hero[k])
+              }
+            }else{
+              for(let k in this.data.save.hero){
+                let hero=this.data.save.hero[k]
+                if(v.can.indexOf(hero.type)!=-1||v.can.indexOf(hero.pro)!=-1)this.can.push(hero)
+              }
+            }
+          }
+          //有cant
+          if(v.cant&&v.cant!='all'){
+            for(let k in this.data.save.hero){
+              let hero=this.data.save.hero[k]
+              if(v.cant.indexOf(hero.type)==-1&&v.cant.indexOf(hero.pro)==-1)this.can.push(hero)
+            }
+          }
+        },
+        //根据装备调整属性
+        equipAttr(type,heroName,equipName){
+          let hero=this.data.save.hero[heroName]
+          let equip=this.data.equip[equipName]
+
+          //穿戴
+          if(type=='wear'){
+            if(equip.atk)hero.atk+=equip.atk
+            if(equip.def)hero.def+=equip.def
+            if(equip.mp)hero.mp+=equip.mp
+            if(equip.mr)hero.mr+=equip.mr
+            if(equip.mov)hero.mov+=equip.mov
+            if(equip.range)hero.range+=equip.range
+            if(equip.soldier){
+              if(hero.soldier){
+                hero.soldier.mr+=equip.soldier.mr
+              }else{
+                hero.soldier=equip.soldier
+              }
+            }
+            if(equip.summon)hero.summon=equip.summon
+            if(equip.command){
+              if(equip.command.range)hero.command.range+=equip.command.range
+              if(equip.command.atk)hero.command.atk+=equip.command.atk
+              if(equip.command.def)hero.command.def+=equip.command.def
+            }
+            if(equip.magic_atk)hero.magic_atk+=equip.magic_atk
+            if(equip.magic_range)hero.magic_range+=equip.magic_range
+          }
+
+          //卸下
+          if(type=='remove'){
+            if(equip.atk)hero.atk-=equip.atk
+            if(equip.def)hero.def-=equip.def
+            if(equip.mp)hero.mp-=equip.mp
+            if(equip.mr)hero.mr-=equip.mr
+            if(equip.mov)hero.mov-=equip.mov
+            if(equip.range)hero.range-=equip.range
+            if(equip.soldier){
+              if(hero.soldier){
+                hero.soldier.mr-=equip.soldier.mr
+              }else{
+                delete hero.soldier
+              }
+            }
+            if(equip.summon)delete hero.summon
+            if(equip.command){
+              if(equip.command.range)hero.command.range-=equip.command.range
+              if(equip.command.atk)hero.command.atk-=equip.command.atk
+              if(equip.command.def)hero.command.def-=equip.command.def
+            }
+            if(equip.magic_atk)hero.magic_atk-=equip.magic_atk
+            if(equip.magic_range)hero.magic_range-=equip.magic_range
+          }
+        },
+        //征募
+        recruit(hero,soldier){
+          //判断人数
+          if(this.troops[hero].length>=4){
+            this.$message.error('士兵数量已达上限')
+            return
+          }
+          //判断资金
+          if(this.data.save.money<this.data.wo[soldier].cost){
+            this.$message.error('资金不足')
+            return
+          }
+
+          this.troops[hero].push(soldier)
+          //扣除资金
+          this.data.save.money-=this.data.wo[soldier].cost
+        },
+        //取消征募
+        unRecruit(hero,soldier){
+          let idx=this.troops[hero].indexOf(soldier)
+          this.troops[hero].splice(idx,1)
+          //退还资金
+          this.data.save.money+=this.data.wo[soldier].cost
+        },
+        //下一步
+        next(){
+          this.$message('网页版不保存装备和佣兵')
+          lh.toUrl('game.html')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

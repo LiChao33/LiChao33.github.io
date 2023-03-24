@@ -1,0 +1,130 @@
+{
+  "水元素": {
+    "type": "灵体",
+    "img": "asset/image/role/summon/common/mgif8d.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif8d.gif",
+      "battle":"asset/image/role/summon/battle/class8d.gif"
+    },
+    "atk": 22,
+    "def": 20,
+    "mov": 6,
+    "mr": 70,
+    "mp": 10,
+    "move": "fly",
+    "magic":[],
+    "inj":"asset/effect/injured-woman.mp3"
+  },
+  "八足神马": {
+    "type": "骑兵",
+    "img": "asset/image/role/summon/common/mgif91.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif91.gif",
+      "battle":"asset/image/role/summon/battle/class91.gif"
+    },
+    "atk": 31,
+    "def": 18,
+    "mov": 10,
+    "mr": 70,
+    "mp": 0,
+    "move": "ride",
+    "magic":[],
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "芙蕾娅": {
+    "type": "飞兵",
+    "img": "asset/image/role/summon/common/mgif8e.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif8e.gif",
+      "battle":"asset/image/role/summon/battle/class8e.gif"
+    },
+    "atk": 23,
+    "def": 25,
+    "mov": 7,
+    "mr": 70,
+    "mp": 10,
+    "move": "fly",
+    "magic":[],
+    "inj":"asset/effect/injured-woman.mp3"
+  },
+  "女武神": {
+    "type": "飞兵",
+    "img": "asset/image/role/summon/common/mgif90.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif90.gif",
+      "battle":"asset/image/role/summon/battle/class90.gif"
+    },
+    "atk": 29,
+    "def": 21,
+    "mov": 7,
+    "mr": 70,
+    "mp": 25,
+    "move": "fly",
+    "magic":[],
+    "inj":"asset/effect/injured-woman.mp3"
+  },
+  "大蛇": {
+    "type": "水兵",
+    "img": "asset/image/role/summon/common/mgif93.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif93.gif",
+      "battle":"asset/image/role/summon/battle/class93.gif"
+    },
+    "atk": 29,
+    "def": 28,
+    "mov": 4,
+    "mr": 70,
+    "mp": 32,
+    "move": "swim",
+    "magic":[],
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "魔狼芬利尔": {
+    "type": "骑兵",
+    "img": "asset/image/role/summon/common/mgif92.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif92.gif",
+      "battle":"asset/image/role/summon/battle/class92.gif"
+    },
+    "atk": 31,
+    "def": 25,
+    "mov": 8,
+    "mr": 70,
+    "mp": 10,
+    "move": "ride",
+    "magic":[],
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "白龙": {
+    "type": "飞兵",
+    "img": "asset/image/role/summon/common/mgif8f.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif8f.gif",
+      "battle":"asset/image/role/summon/battle/class8f.gif"
+    },
+    "atk": 33,
+    "def": 22,
+    "mov": 5,
+    "mr": 70,
+    "mp": 8,
+    "move": "fly",
+    "magic":[],
+    "inj":"asset/effect/injured-man.mp3"
+  },
+  "兄贵": {
+    "type": "步兵",
+    "img": "asset/image/role/summon/common/mgif94.png",
+    "imgs": {
+      "active":"asset/image/role/summon/active/mgif94.gif",
+      "battle":"asset/image/role/summon/battle/class94.gif"
+    },
+    "atk": 35,
+    "def": 30,
+    "mov": 4,
+    "mr": 70,
+    "mp": 16,
+    "move": "run",
+    "magic":[],
+    "inj":"asset/effect/injured-man.mp3"
+  }
+}

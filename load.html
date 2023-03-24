@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+  <script type="text/javascript" src="asset/js/lh.js"></script>
+  <script>lh.load()</script>
+
+  <style type="text/css">
+    html, body, #app{
+      height: 100%;
+      margin:0;
+    }
+    p{
+      margin: 0;
+    }
+
+    .step0{
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .step1{
+      height: 100%;
+      background-color: #000;
+      color: #fff;
+      text-shadow: 0 0 10px #000;
+      user-select: none;
+    }
+    .camp{
+      padding: 50px 80px;
+      font-size: 30px;
+    }
+    .camp img{
+      height: 48px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="animate__animated animate__fadeIn">
+    <div v-if="step==0" class="step0" @click="step=1" 
+      :style="plot"></div>
+    <div v-if="step==1" class="step1">
+      <!-- 描述 -->
+      <div style="text-indent:2em;font-size: 25px;padding: 60px 80px 0px 80px;">
+        {{content}}
+      </div>
+      <!-- 条件 -->
+      <div style="font-size: 30px;display: flex;justify-content:center;padding:50px 80px 0px 80px;">
+        <div style="width: 50%;display: flex;">
+          <div style="margin-right: 20px;">胜利条件</div>
+          <div>
+            <p v-for="v in win">·{{v}}</p>
+          </div>
+        </div>
+        <div style="width: 50%;display: flex;">
+          <div style="margin-right: 20px;">败北条件</div>
+          <div>
+            <p v-for="v in fail">·{{v}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- 阵营 -->
+      <div class="camp">
+        <p>敌我阵营</p>
+        <div style="display: flex;">
+          <div style="width: 50%;">
+            <p>我方</p>
+            <div><img v-for="v in wo" :src="data.hero.wo[v.hero].img"></div>
+            <p>友方</p>
+            <div><img v-for="v in friend" :src="data.hero.wo[v.hero].img"></div>
+          </div>
+          <div style="width: 50%;">
+            <p>敌方</p>
+            <div><img style="transform: rotateY(180deg);" v-for="v in enemy" :src="data.hero.enemy[v.hero].img"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 按钮 -->
+      <div style="position:absolute;bottom:10vh;width:100%;display: flex;justify-content: center;">
+        <el-button type="primary" style="font-size: 30px;width: 150px;" @click="next">确认</el-button>
+      </div>
+    </div>
+
+    <!-- 背景音乐 -->
+    <loaf-music ref="music"></loaf-music>
+  </div>
+
+  <script>
+    lh.vue({
+      data(){
+        return{
+          //关卡
+          level:1,
+          plot:'',
+          content:'',
+          win:[],
+          fail:[],
+          //阵营
+          wo:[],
+          friend:[],
+          enemy:[],
+          //
+          step:0,
+          //数据
+          data:{
+            hero:{wo:null,enemy:null},
+            wo:null,
+            enemy:null,
+          },
+        }
+      },
+      created(){
+        //获取关卡信息
+        let level=lh.get("asset/data/level/"+this.level+".json")
+        let desc=level.describe
+        this.content=desc
+        this.plot='background-image:url('+level.plot+');'
+
+        //获取胜败条件
+        this.win=level.win
+        this.fail=level.fail
+
+        //获取英雄
+        this.data.hero.wo = lh.get("asset/data/role/hero/wo.json")
+        this.data.hero.enemy = lh.get("asset/data/role/hero/enemy.json")
+        //获取兵种
+        this.data.wo = lh.get("asset/data/role/wo.json")
+        this.data.enemy = lh.get("asset/data/role/enemy.json")
+
+        //敌我阵营
+        this.wo=level.troops.wo
+        this.friend=level.troops.friend
+        this.enemy=level.troops.enemy
+      },
+      mounted(){
+        this.$refs.music.set('asset/music/剧情提要.mp3')
+      },
+      methods:{
+        next(){
+          lh.toUrl('shop.html')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

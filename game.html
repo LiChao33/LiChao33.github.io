@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+  <script type="text/javascript" src="asset/js/lh.js"></script>
+  <script>lh.load()</script>
+
+  <script type="text/javascript">
+    (function(){
+      let type=lh.getUrl('type')
+      if(type=='net'){
+        document.write('<script src="js/netgame.js"><\/script>')
+        document.write('<script src="js/level/survive.js"><\/script>')
+        return
+      }
+      let level=1
+      if(lh.getUrl('level')&&lh.getUrl('level')==2)level=2
+      document.write('<script src="js/level/'+level+'.js"><\/script>')
+    })()
+  </script>
+
+  <link rel="stylesheet" href="css/game.css" />
+</head>
+
+<body>
+  <div id="app" class="animate__animated animate__fadeIn">
+    <div id="map" style="transform:translateX(0px) translateY(0px);">
+      <!-- UI网格 -->
+      <div class="grid">
+        <div v-for="y in grid.y" class="grid-y" :style="'height:'+grid.cell+'px;'">
+          <div v-for="x in grid.x" :id="'grid-x'+x+','+y" class="grid-x" :class="gridx(x+','+y)" :style="'width:'+grid.cell+'px;'" @mouseover="mouseover(x+','+y)">
+            <!-- 角色 -->
+            <div v-if="grid.role[x+','+y]&&JSON.stringify(grid.role[x+','+y])!='{}'" :id="'grid-role'+x+','+y" class="grid-role" @click="roleClick(x+','+y)">
+              <img :class="{'img-shade':grid.finish[x+','+y],'enemy':grid.role[x+','+y].camp=='enemy'}" :src="roleImg(x+','+y)">
+              <span class="hp" :style="style.hp">{{grid.role[x+','+y].hp}}</span>
+              <span v-if="show.netname&&grid.role[x+','+y].netid==hover.netid" class="netname">{{grid.role[x+','+y].netname}}</span>
+            </div>
+            <!-- 点击 -->
+            <div v-if="grid.click[x+','+y]" class="grid-click" :class="{'grid-click-move':sel.step=='move','grid-click-attack':sel.step=='attack'&&sel.to!=x+','+y,'grid-click-magic':sel.step=='magic'}" @click.stop="gridClick(x+','+y)"></div>
+            <!-- 其他 -->
+            <div v-if="grid.item[x+','+y]" :id="'grid-item'+x+','+y" class="grid-item" v-html="grid.item[x+','+y]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 回合标题 -->
+    <div v-if="show.round" id="round" class="animate__animated animate__bounceInLeft">
+      <span v-if="round.turn=='wo'">我方回合</span>
+      <span v-if="round.turn=='friend'" style="color:#28FF28;">友方回合</span>
+      <span v-if="round.turn=='enemy'" style="color:#FF2D2D;">敌方回合</span>
+    </div>
+
+    <!-- 魔法选择 -->
+    <div v-if="show.magic" class="loaf-popup">
+      <div v-if="grid.role[sel.from].magic.length" style="background-color: #fff;padding: 30px;border-radius: 10px;">
+        <el-button v-for="v in grid.role[sel.from].magic" :disabled="grid.role[sel.from].mp<data.magic[v].mp" @click="calMagic(v)">{{v}}</el-button>
+      </div>
+      <div v-else style="background-color: #fff;padding: 30px;border-radius: 10px;">
+        无
+      </div>
+    </div>
+
+    <!-- UI -->
+    <div class="ui-info">
+      <div>
+        <span>坐标:{{hover.xy}}</span>
+        <span>回合:{{round.num}}</span>
+        <span>地形减伤:{{hover.terrain}}</span>
+        <span v-if="isnet">ping:{{net.ping}}ms</span>
+      </div>
+      <!-- 角色信息 -->
+      <div v-if="show.role" style="margin-bottom: 5px;">
+        <span>{{hover.role.name}}</span>
+        <span>攻击:{{hover.role.atk}}</span>
+        <span>防御:{{hover.role.def}}</span>
+        <span v-if="hover.role.command">MP:{{hover.role.mp}}/{{hover.role.allmp}}</span>
+        <span v-if="hover.role.command">
+          装备:
+          <template v-for="v in hover.role.equip" style="margin-right: 10px">{{v}}</template>
+        </span>
+      </div>
+    </div>
+    <div class="ui">
+      <el-button v-if="pattern=='survive'&&round.num<1" :disabled="round.turn!='wo'" class="animate__animated animate__backInLeft" type="primary" onFocus="this.blur()" @click="show.deploy=true">部署士兵</el-button>
+      <el-button type="primary" onFocus="this.blur()" @click="explain">操作说明</el-button>
+      <el-button type="primary" :disabled="disRound" onFocus="this.blur()" @click="turnClick">回合结束</el-button>
+    </div>
+
+    <!-- 部署士兵 -->
+    <div v-if="show.deploy&&round.turn=='wo'" class="deploy">
+      <p class="title">士兵部署</p>
+      <div v-for="(v,k) in sur.troops">
+        <p class="stitle">{{v.hero}}的部队</p>
+        <div class="troops">
+          <el-popover v-for="v2 in v.soldier" placement="top-start" trigger="hover">
+            <template #reference>
+              <div class="arm">
+                <img :src="data.wo[v2].img">
+                <el-button size="mini" @click="dismiss(k,v2)">解雇</el-button>
+              </div>
+            </template>
+            <div class="popover">
+              <div>{{v2}}</div>
+              <div>攻击:{{data.wo[v2].atk}}</div>
+              <div>防御:{{data.wo[v2].def}}</div>
+              <div>移动:{{data.wo[v2].mov}}</div>
+              <div>返还费用:{{data.wo[v2].cost/2}}</div>
+            </div>
+          </el-popover>
+        </div>
+        <p class="stitle">可雇佣(初始位置为出生点)</p>
+        <div class="troops">
+          <el-popover v-for="v2 in v.recruit" placement="top-start" trigger="hover">
+            <template #reference>
+              <div class="arm">
+                <img :src="data.wo[v2].img">
+                <el-button type="primary" size="mini" @click="recruit(k,v2)">雇佣</el-button>
+              </div>
+            </template>
+            <div class="popover">
+              <div>{{v2}}</div>
+              <div>攻击:{{data.wo[v2].atk}}</div>
+              <div>防御:{{data.wo[v2].def}}</div>
+              <div>移动:{{data.wo[v2].mov}}</div>
+              <div>费用:{{data.wo[v2].cost}}</div>
+            </div>
+          </el-popover>
+        </div>
+        <p></p>
+      </div>
+      <div class="btn">
+        <span>资金:{{sur.money}}</span>
+        <div>
+          <el-button @click="show.deploy=false">关闭</el-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 网络聊天框 -->
+    <div v-if="isnet" class="chat">
+      <div id="chat" v-show="show.chatMsg">
+        <div v-for="v in net.chat" style="display: flex;">
+          <span style="min-width: 50px;">{{v.name}}: </span>
+          <div>{{v.content}}</div>
+        </div>
+      </div>
+      <div v-if="show.chat" style="height:36px;width:400px;">
+        <el-input ref="chat" v-model="net.form.chat" size="medium" placeholder="回车发送" onkeyup="lhnet.chat(this,event)" @blur="show.chat=false;show.chatMsg=false;"></el-input>
+      </div>
+    </div>
+
+    <!-- 系统菜单 -->
+    <loaf-menu @music="changeVolume" @save="save"></loaf-menu>
+
+    <!-- 背景音乐 -->
+    <loaf-music ref="music"></loaf-music>
+
+    <!-- 对话框 -->
+    <loaf-dialog ref="dialog"></loaf-dialog>
+  </div>
+
+  <script type="text/javascript" src="js/game.js"></script>
+</body>
+</html>
